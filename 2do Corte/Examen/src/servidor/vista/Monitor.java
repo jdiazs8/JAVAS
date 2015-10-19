@@ -5,7 +5,6 @@
  */
 package servidor.vista;
 
-import javax.swing.JOptionPane;
 import servidor.controlador.Controlador;
 
 /**
@@ -22,6 +21,7 @@ public class Monitor extends javax.swing.JFrame {
     public Monitor(Controlador controlador) {
         this();
         this.controlador = controlador;
+        controlador.setRegistro(jtaLogueos);
     }
     
     public Monitor() {
@@ -40,7 +40,7 @@ public class Monitor extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtaLogueos = new javax.swing.JTextArea();
         jmbMenu = new javax.swing.JMenuBar();
-        jmArchivo = new javax.swing.JMenu();
+        jmServidor = new javax.swing.JMenu();
         jmiExportar = new javax.swing.JMenuItem();
         jmiSalir = new javax.swing.JMenuItem();
         jmBaseDatos = new javax.swing.JMenu();
@@ -53,11 +53,16 @@ public class Monitor extends javax.swing.JFrame {
         jtaLogueos.setRows(5);
         jScrollPane2.setViewportView(jtaLogueos);
 
-        jmArchivo.setText("Archivo");
+        jmServidor.setText("Servidor");
 
         jmiExportar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, 0));
         jmiExportar.setText("Exportar");
-        jmArchivo.add(jmiExportar);
+        jmiExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiExportarActionPerformed(evt);
+            }
+        });
+        jmServidor.add(jmiExportar);
 
         jmiSalir.setText("Salir");
         jmiSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -65,9 +70,9 @@ public class Monitor extends javax.swing.JFrame {
                 jmiSalirActionPerformed(evt);
             }
         });
-        jmArchivo.add(jmiSalir);
+        jmServidor.add(jmiSalir);
 
-        jmbMenu.add(jmArchivo);
+        jmbMenu.add(jmServidor);
 
         jmBaseDatos.setText("Base de Datos");
 
@@ -99,7 +104,7 @@ public class Monitor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jmiSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSalirActionPerformed
         // TODO add your handling code here:
         System.exit(1);
@@ -107,16 +112,15 @@ public class Monitor extends javax.swing.JFrame {
 
     private void jmiConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConectarActionPerformed
         // TODO add your handling code here:
-        String bd = JOptionPane.showInputDialog("Ingrese el nombre de la base de datos:");
-        String sv = JOptionPane.showInputDialog("Ingrese el nombre/direción IP del servidor:");
-        String pr = JOptionPane.showInputDialog("Ingrese el puerto de conexión:");
-        String us = JOptionPane.showInputDialog("Ingrese el usuario:");
-        String ps = JOptionPane.showInputDialog("Ingrese el password:");
-        
-        this.controlador.setBaseDato(bd, ps, pr, us, ps);
-        this.controlador.setRegistro(jtaLogueos);
+        ConexionBD conexion = new ConexionBD(controlador);
+        conexion.setVisible(true);
     }//GEN-LAST:event_jmiConectarActionPerformed
 
+    private void jmiExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiExportarActionPerformed
+        // TODO add your handling code here:
+        controlador.ExportarRegistro();
+    }//GEN-LAST:event_jmiExportarActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -148,15 +152,16 @@ public class Monitor extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Monitor().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JMenu jmArchivo;
     private javax.swing.JMenu jmAyuda;
     private javax.swing.JMenu jmBaseDatos;
+    private javax.swing.JMenu jmServidor;
     private javax.swing.JMenuBar jmbMenu;
     private javax.swing.JMenuItem jmiConectar;
     private javax.swing.JMenuItem jmiExportar;

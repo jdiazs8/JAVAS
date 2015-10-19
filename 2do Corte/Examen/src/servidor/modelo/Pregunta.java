@@ -9,21 +9,31 @@ package servidor.modelo;
  *
  * @author Jorge
  */
-public class Pregunta {
+public class Pregunta implements AccionPregunta{
     private String materia;
     private int nivel;
     private String enunciado;
     private String respuesta;
+    private String tipoPregunta;
     
-    public Pregunta(){
-       
+    public Pregunta() {
+        
     }
 
-    public Pregunta(String materia, int nivel, String Enunciado, String respuesta) {
+    public Pregunta(String materia, int nivel, String Enunciado, String respuesta, String tipoPregunta) {
         this.materia = materia;
         this.nivel = nivel;
         this.enunciado = Enunciado;
         this.respuesta = respuesta;
+        this.tipoPregunta = tipoPregunta;
+    }
+
+    public String getTipoPregunta() {
+        return tipoPregunta;
+    }
+
+    public void setTipoPregunta(String tipoPregunta) {
+        this.tipoPregunta = tipoPregunta;
     }
 
     public String getMateria() {
@@ -56,5 +66,20 @@ public class Pregunta {
 
     public void setRespuesta(String respuesta) {
         this.respuesta = respuesta;
+    }
+
+    @Override
+    public void crear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
