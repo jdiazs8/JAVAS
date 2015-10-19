@@ -5,14 +5,29 @@
  */
 package servidor.controlador;
 
+import javax.swing.JTextArea;
+import servidor.modelo.*;
+import servidor.vista.Monitor;
+
 
 /**
  *
  * @author Jorge
  */
 public class Controlador {
+    private BaseDatos bd;
+    private Monitor vista;
     
     public Controlador(){
-        
+        this.bd = BaseDatos.getInstance();
+    }
+    
+    public void setBaseDato(String dataBase, String host, String port, String user, String password) {
+        int puerto = Integer.parseInt(port);
+        bd.setBaseDatos(dataBase, host, puerto, user, password);
+    }
+    
+    public void setRegistro(JTextArea reg) {
+        reg.setText(bd.getRegistro().getText() + "\n");
     }
 }

@@ -11,6 +11,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmiExportar">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="E"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Exportar"/>
               </Properties>
             </MenuItem>
@@ -20,6 +23,21 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiSalirActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jmBaseDatos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Base de Datos"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jmiConectar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Conectar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiConectarActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -5,6 +5,7 @@
  */
 package servidor.vista;
 
+import javax.swing.JOptionPane;
 import servidor.controlador.Controlador;
 
 /**
@@ -42,6 +43,8 @@ public class Monitor extends javax.swing.JFrame {
         jmArchivo = new javax.swing.JMenu();
         jmiExportar = new javax.swing.JMenuItem();
         jmiSalir = new javax.swing.JMenuItem();
+        jmBaseDatos = new javax.swing.JMenu();
+        jmiConectar = new javax.swing.JMenuItem();
         jmAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,6 +55,7 @@ public class Monitor extends javax.swing.JFrame {
 
         jmArchivo.setText("Archivo");
 
+        jmiExportar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, 0));
         jmiExportar.setText("Exportar");
         jmArchivo.add(jmiExportar);
 
@@ -64,6 +68,18 @@ public class Monitor extends javax.swing.JFrame {
         jmArchivo.add(jmiSalir);
 
         jmbMenu.add(jmArchivo);
+
+        jmBaseDatos.setText("Base de Datos");
+
+        jmiConectar.setText("Conectar");
+        jmiConectar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConectarActionPerformed(evt);
+            }
+        });
+        jmBaseDatos.add(jmiConectar);
+
+        jmbMenu.add(jmBaseDatos);
 
         jmAyuda.setText("Ayuda");
         jmbMenu.add(jmAyuda);
@@ -88,6 +104,18 @@ public class Monitor extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(1);
     }//GEN-LAST:event_jmiSalirActionPerformed
+
+    private void jmiConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConectarActionPerformed
+        // TODO add your handling code here:
+        String bd = JOptionPane.showInputDialog("Ingrese el nombre de la base de datos:");
+        String sv = JOptionPane.showInputDialog("Ingrese el nombre/direción IP del servidor:");
+        String pr = JOptionPane.showInputDialog("Ingrese el puerto de conexión:");
+        String us = JOptionPane.showInputDialog("Ingrese el usuario:");
+        String ps = JOptionPane.showInputDialog("Ingrese el password:");
+        
+        this.controlador.setBaseDato(bd, ps, pr, us, ps);
+        this.controlador.setRegistro(jtaLogueos);
+    }//GEN-LAST:event_jmiConectarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,7 +156,9 @@ public class Monitor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu jmArchivo;
     private javax.swing.JMenu jmAyuda;
+    private javax.swing.JMenu jmBaseDatos;
     private javax.swing.JMenuBar jmbMenu;
+    private javax.swing.JMenuItem jmiConectar;
     private javax.swing.JMenuItem jmiExportar;
     private javax.swing.JMenuItem jmiSalir;
     private javax.swing.JTextArea jtaLogueos;

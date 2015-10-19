@@ -15,8 +15,10 @@ import servidor.vista.Monitor;
  */
 public class Principal {
     public static void main(String[] args){
-        Controlador cont = new Controlador();
-        Monitor vista = new Monitor(cont);
+        //BaseDatos conecBD = BaseDatos.getInstance();
+        //conecBD.setBaseDatos("javas", "localhost", 3306, "javas", "javas");
+        Controlador controlador = new Controlador();
+        Monitor vista = new Monitor(controlador);
         vista.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vista.pack();
         vista.setVisible(true);
