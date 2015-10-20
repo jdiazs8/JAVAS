@@ -5,13 +5,16 @@
  */
 package servidor.modelo;
 
+import servidor.Modelo;
+
 /**
- *
- * @author Jorge
+ * Clase interface que implementa los modelos básicos de los metodos para el tratamientode de la información de las preguntas.
+ * @author: Jorge Diaz Serrato, Sandra Milena Ramirez.
+ * @version: V2.1, 18/10/2015
  */
-public interface AccionPregunta {
+public interface AccionPregunta extends Modelo {
     
-    public void crear();
-    public void eliminar();
-    public void modificar();
+    public void crearPregunta();
+    public void eliminarPregunta();
+    public void modificarPregunta();
 }

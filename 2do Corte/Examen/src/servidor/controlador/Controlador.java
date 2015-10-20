@@ -15,12 +15,12 @@ import servidor.modelo.*;
  *
  * @author Jorge
  */
-public class Controlador implements Modelo {
+public class Controlador implements Modelo, AccionPregunta {
     private BaseDatos bd;
     private Conecta iniServer;
     private JTextArea registro;
     private RegistroTxt expRegistro;
-    private Pregunta pregunta;
+    private AccionPregunta pregunta;
     
     public Controlador(){
         bd = BaseDatos.getInstance();
@@ -42,14 +42,32 @@ public class Controlador implements Modelo {
     public void ExportarRegistro() {
         expRegistro  = new RegistroTxt(registro.getText());
         expRegistro.setRegistro(registro);
+        pregunta = new Pregunta();
+        pregunta.crearPregunta();
     }
     
+    public void preguntas() {
+        this.pregunta = new Pregunta();
+    }
     
    
     @Override
     public void setRegistro(JTextArea registro) {
         this.registro = registro;
-        //iniServer.setRegistro(registro);
-        //bd.setRegistro(registro);
+    }
+
+    @Override
+    public void crearPregunta() {
+        pregunta.crearPregunta();
+    }
+
+    @Override
+    public void eliminarPregunta() {
+
+    }
+
+    @Override
+    public void modificarPregunta() {
+
     }
 }

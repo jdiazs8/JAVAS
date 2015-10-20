@@ -136,6 +136,7 @@ select *from tb_usuarios;
 select *from tb_tipo_pregunta;
 select *from tb_niveles;
 select *from tb_materias;
+select *from tb_preguntas;
 
 /*----------------Distractores----------------*/
 DELIMITER $$
@@ -214,8 +215,7 @@ CREATE PROCEDURE insertarPregunta(pr_enunciado VARCHAR(200),
 												m_id INT(3),
 											   tp_id INT(1))
 BEGIN
-    INSERT INTO tb_preguntas
-    VALUES(pr_enunciado, pr_respuesta, n_id, m_id, tp_id);
+    INSERT INTO tb_preguntas VALUES(NULL,pr_enunciado,pr_respuesta,n_id,m_id,tp_id);
 END
 $$
  
@@ -247,3 +247,5 @@ BEGIN
     WHERE tb_materias.m_id = m_id;
 END
 $$
+
+select *from tb_preguntas;

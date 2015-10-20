@@ -5,6 +5,10 @@
  */
 package servidor.modelo;
 
+import java.sql.CallableStatement;
+import java.sql.SQLException;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author Jorge
@@ -69,17 +73,35 @@ public class Pregunta implements AccionPregunta{
     }
 
     @Override
-    public void crear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void crearPregunta() {
+        CallableStatement cs;
+        
+        try{
+            cs = BaseDatos.getConexion().prepareCall("{CALL insertarPregunta(?,?,?,?,?)}");
+            String s1 = "Enunciado de prueba.";
+            cs.setString(1, s1);
+            cs.setString(2, "Respuesta de prueba");
+            cs.setInt(3, 1);
+            cs.setInt(4, 2);
+            cs.setInt(5, 1);
+            cs.execute();
+        }catch (SQLException e) {
+            System.err.println("Error en la INSERCIÓN " + e);
+        }
     }
 
     @Override
-    public void eliminar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void eliminarPregunta() {
+        
     }
 
     @Override
-    public void modificar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void modificarPregunta() {
+        
+    }
+
+    @Override
+    public void setRegistro(JTextArea registro) {
+        
     }
 }
