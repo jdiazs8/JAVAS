@@ -138,6 +138,18 @@ select *from tb_niveles;
 select *from tb_materias;
 select *from tb_preguntas;
 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS insertarDistractor$$
+CREATE PROCEDURE insertarDistractor(d_nombre VARCHAR(70),
+											 m_id INT(3),
+											 n_id INT(1))
+BEGIN
+    INSERT INTO tb_distractores
+    VALUES(d_nombre,m_id,n_id);
+END
+$$
+
+
 /*----------------Distractores----------------*/
 DELIMITER $$
 DROP PROCEDURE IF EXISTS insertarDistractor$$
@@ -145,7 +157,7 @@ CREATE PROCEDURE insertarDistractor(d_nombre VARCHAR(70),
 											 m_id INT(3),
 											 n_id INT(1))
 BEGIN
-    INSERT INTO distractores
+    INSERT INTO tb_distractores
     VALUES(d_nombre,m_id,n_id);
 END
 $$
@@ -193,7 +205,6 @@ BEGIN
 	UPDATE tb_materias
     SET tb_materias.m_nombre  = m_nombre
     WHERE tb_materias.m_id = m_id;
- 
 END
 $$
 
@@ -234,18 +245,82 @@ BEGIN
 						tb_preguntas.n_id  = n_id,
 						tb_preguntas.m_id  = m_id,
 					    tb_preguntas.tp_id = tp_id
-WHERE tb_preguntas.pr_id = pr_id;
- 
+	WHERE tb_preguntas.pr_id = pr_id;
 END
 $$
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS borrarMateria$$
-CREATE PROCEDURE borrarMateria(m_id INT(3))
+DROP PROCEDURE IF EXISTS borrarPregunta$$
+CREATE PROCEDURE borrarPregunta(m_id INT(3))
 BEGIN
-    DELETE FROM tb_materias
-    WHERE tb_materias.m_id = m_id;
+    DELETE FROM tb_preguntas
+    WHERE tb_preguntas.m_id = m_id;
 END
 $$
 
-select *from tb_preguntas;
+/*----------------Preguntas relaciones----------------*/
+DELIMITER $$
+DROP PROCEDURE IF EXISTS insertarPreguntaRelaciones$$
+CREATE PROCEDURE insertarPreguntaRelaciones(prr_enunciado VARCHAR(200),
+																   n_id INT(1),
+																   m_id INT(3),
+															      tp_id INT(1),
+										                   prr_op1 VARCHAR(70),
+														   prr_op2 VARCHAR(70),
+														   prr_op3 VARCHAR(70),
+														   prr_op4 VARCHAR(70),
+														   prr_op5 VARCHAR(70),
+														    prr_r1 VARCHAR(70),
+														    prr_r2 VARCHAR(70),
+														    prr_r3 VARCHAR(70),
+														    prr_r4 VARCHAR(70),
+														    prr_r5 VARCHAR(70))
+BEGIN
+    INSERT INTO tb_preguntas_relaciones VALUES(NULL,prr_enunciado,n_id,m_id,tp_id,prr_op1,prr_op2,prr_op3,prr_op4,prr_op5,prr_r1,prr_r2,prr_r3,prr_r4,prr_r5);
+END
+$$
+ 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS modificarPreguntaRelaciones$$
+CREATE PROCEDURE modificarPreguntaRelaciones(pr_id int(4),
+											  n_id INT(1),
+											  m_id INT(3),
+								             tp_id INT(1),
+							          prr_op1 VARCHAR(70),
+									  prr_op2 VARCHAR(70),
+									  prr_op3 VARCHAR(70),
+									  prr_op4 VARCHAR(70),
+									  prr_op5 VARCHAR(70),
+									   prr_r1 VARCHAR(70),
+									   prr_r2 VARCHAR(70),
+									   prr_r3 VARCHAR(70),
+									   prr_r4 VARCHAR(70),
+									   prr_r5 VARCHAR(70))
+BEGIN
+	UPDATE tb_preguntas_relaciones
+    SET tb_preguntas_relaciones.pr_enunciado  = pr_enunciado,
+						tb_preguntas_relaciones.n_id  = n_id,
+						tb_preguntas_relaciones.m_id  = m_id,
+					    tb_preguntas_relaciones.tp_id = tp_id,
+					tb_preguntas_relaciones.prr_op1 = prr_op1,
+                    tb_preguntas_relaciones.prr_op2 = prr_op2,
+                    tb_preguntas_relaciones.prr_op3 = prr_op3,
+                    tb_preguntas_relaciones.prr_op4 = prr_op4,
+                    tb_preguntas_relaciones.prr_op5 = prr_op5,
+                      tb_preguntas_relaciones.prr_r1 = prr_r1,
+                      tb_preguntas_relaciones.prr_r2 = prr_r2,
+                      tb_preguntas_relaciones.prr_r3 = prr_r3,
+                      tb_preguntas_relaciones.prr_r4 = prr_r4,
+                      tb_preguntas_relaciones.prr_r5 = prr_r5
+	WHERE tb_preguntas.pr_id = pr_id;
+END
+$$
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS borrarPreguntaRelaciones$$
+CREATE PROCEDURE borrarPreguntaRelaciones(m_id INT(3))
+BEGIN
+    DELETE FROM tb_preguntas_Relaciones
+    WHERE tb_preguntas.m_id = m_id;
+END
+$$
