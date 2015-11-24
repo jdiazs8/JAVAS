@@ -324,3 +324,43 @@ BEGIN
     WHERE tb_preguntas.m_id = m_id;
 END
 $$
+
+/*----------------Usuario----------------*/
+DELIMITER $$
+DROP PROCEDURE IF EXISTS insertarUsuario$$
+CREATE PROCEDURE insertarUsuario(u_id VARCHAR(10),
+						     u_nombre VARCHAR(50),
+							  u_clave VARCHAR(20),
+						   u_correo_e VARCHAR(50),
+									  p_id INT(1))
+BEGIN
+    INSERT INTO tb_usuarios
+    VALUES(u_id,u_nombre,u_clave,u_correo_e,p_id);
+END
+$$
+ 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS modificarUsuario$$
+CREATE PROCEDURE modificarUsuario(u_id VARCHAR(10),
+						      u_nombre VARCHAR(50),
+							   u_clave VARCHAR(20),
+						    u_correo_e VARCHAR(50),
+									   p_id INT(1))
+BEGIN
+	UPDATE tb_usuarios
+    SET tb_usuarios.u_nombre = u_nombre,
+		  tb_usuarios.u_clave = u_clave, 
+	tb_usuarios.u_correo_e = u_correo_e, 
+             tb_usuarios.u_p_id = u_p_id
+    WHERE tb_usuarios.u_id = u_id;
+END
+$$
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS borrarUsuario$$
+CREATE PROCEDURE borrarUsuario(u_id INT(10))
+BEGIN
+    DELETE FROM tb_usuarios
+    WHERE tb_usuarios.u_id = u_id;
+END
+$$

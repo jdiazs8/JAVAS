@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.util.Vector;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -14,12 +15,35 @@ import javax.faces.bean.RequestScoped;
  */
 @ManagedBean
 @RequestScoped
-public class PregOpMulti {
-
+public class PregOpMulti extends Pregunta {
+    Vector<String> respuesta = new Vector<String>();
     /**
      * Creates a new instance of PregOpMulti
      */
     public PregOpMulti() {
     }
+
+    public PregOpMulti(String enunciado, Vector<String> respuesta) {
+        this.enunciado = enunciado;
+        this.respuesta = respuesta;
+    }
+
+    
+    @Override
+    public void setBD() {
+        
+    }
+
+    @Override
+    public void updBD() {
+        
+    }
+
+    @Override
+    public void delBD() {
+        
+    }
+    
+    
     
 }

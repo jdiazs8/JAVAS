@@ -19,7 +19,7 @@ import servidor.Modelo;
 public class BaseDatos implements Modelo {
     
     //Datos de la clase.
-    private static BaseDatos instance = new BaseDatos();
+    private static final BaseDatos INSTANCE = new BaseDatos();
     private String host;
     private String usuario;
     private String clave;
@@ -39,7 +39,7 @@ public class BaseDatos implements Modelo {
      * @return instance
      */
     public static BaseDatos getInstance(){
-        return instance;
+        return INSTANCE;
     }//Cierre del instanciador.
     
     /**

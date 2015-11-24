@@ -1,12 +1,73 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html lan="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Examenes</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <p>Sistema de examenes.</p>
+        <h:form>
+            <p>Selecciones lo que quiere hacer:</p> 
+            <h:selectOneRadio>
+                <f:selectItem itemValue="setP" itemLabel="Crear Pregunta" value="#{constructor.setAccion(accion)}" />
+                <f:selectItem itemValue="updP" itemLabel="Actualizar Pregunta " value="#{constructor.setAccion(accion)}" />
+                <f:selectItem itemValue="delP" itemLabel="Eliminar Pregunta" value="#{constructor.setAccion(accion)}" />
+                <f:selectItem itemValue="crearEx" itemLabel="Crear Examen" value="#{constructor.setAccion(accion)}" />
+            </h:selectOneRadio>
+            <h:selectOneListbox id="tipoPre" >
+                <f:selectItem itemValue="1" itemLabel="Op Multiple" />
+                <f:selectItem itemValue="2" itemLabel="Abierta" />
+                <f:selectItem itemValue="3" itemLabel="Relación" />
+                <f:selectItem itemValue="4" itemLabel="Falso/Verdadero" />
+            </h:selectOneListbox>
+            <p>Seleccione la cantidad de preguntas si seleccionó examen:</p>
+            <h:selectOneMenu id="cantidad">
+                <f:selectItem itemValue="1" itemLabel="1" />
+                <f:selectItem itemValue="2" itemLabel="2" />
+                <f:selectItem itemValue="3" itemLabel="3" />
+                <f:selectItem itemValue="4" itemLabel="4" />
+                <f:selectItem itemValue="5" itemLabel="5" />
+                <f:selectItem itemValue="6" itemLabel="6" />
+                <f:selectItem itemValue="7" itemLabel="7" />
+                <f:selectItem itemValue="8" itemLabel="8" />
+                <f:selectItem itemValue="9" itemLabel="9" />
+                <f:selectItem itemValue="10" itemLabel="10" />
+            </h:selectOneMenu>
+            <p>Enunciado:</p>
+            <h:inputTextarea rows="10" cols="70" id="enunciado" />
+            <p>Respuesta abierta:</p>
+            <h:inputText id="rAbierta" /> 
+            <p>Respuesta Falso/Verdadero:</p>
+            <h:selectOneRadio id="rFalVer">
+                <f:selectItem itemValue="true" itemLabel="Falso" />
+                <f:selectItem itemValue="false" itemLabel="Verdadero" />
+            </h:selectOneRadio>
+            <p>Respuesta Opcion Multiple/relacion(Max 4 si es Op Multiple):</p>
+            <p>Respuesta correcta/op1:</p>
+            <h:inputText id="om1" /> 
+            <p>Distractor/op2:</p>
+            <h:inputText id="om2" /> 
+            <p>Distractor/op3:</p>
+            <h:inputText id="om3" /> 
+            <p>Distractor/op4:</p>
+            <h:inputText id="om4" /> 
+            <p>Distractor/op5:</p>
+            <h:inputText id="om5" /> 
+            <p>Relacion 1:</p>
+            <h:inputText id="re1" /> 
+            <p>Relacion 2:</p>
+            <h:inputText id="re2" /> 
+            <p>Relacion 3:</p>
+            <h:inputText id="re3" /> 
+            <p>Relacion 4:</p>
+            <h:inputText id="re4" /> 
+            <p>Relacion 5:</p>
+            <h:inputText id="re5" />
+            <h:commandButton id="enviar" value="enviar" action="examen" />
+        </h:form>
     </h:body>
 </html>
 
