@@ -17,7 +17,6 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class Constructor {
     Director director;
-    Vector<Pregunta> pregunta = new Vector<Pregunta>();
     private String accion;
     private int cantidad;
     private String tipo;
@@ -28,6 +27,13 @@ public class Constructor {
         director = new Director();
     }
 
+    public String getAccion() {
+        if("setP".equals(accion)) {
+            return "Guardar pregunta";
+        }
+        return accion;
+    }
+
     public void setAccion(String accion) {
         this.accion = accion;
     }
@@ -35,9 +41,25 @@ public class Constructor {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
     
-    public Examen solicitarPregunta() {
-        return null;
-    }  
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     
 }
